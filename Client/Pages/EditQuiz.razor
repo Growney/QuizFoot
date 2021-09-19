@@ -1,0 +1,23 @@
+﻿@page "/editquiz/{Code?}"
+
+@if (Quiz != null)
+{
+    <h3>@Quiz.Name</h3>
+    <div>Name: <input @bind="Quiz.Name" /></div>
+    <hr>
+    <div>
+        <button @onclick="NewRound_OnClick">New Round</button>
+    </div>
+
+    @foreach (var round in Quiz.Rounds)
+    {
+        <QuizFoot.Client.Components.Edit.EditRound Root="round"></QuizFoot.Client.Components.Edit.EditRound>
+    }
+
+    <button @onclick="Save_OnClick">Save</button>
+}
+else
+{
+    <h1>Getting Quiz Info...</h1>
+}
+

@@ -1,0 +1,18 @@
+﻿
+
+<div class="round-container">
+    <div class="header"><input @bind="Root.Name" /></div>
+
+    <div>
+        <button @onclick="NewMultipleChoice_OnClick">Multiple Choice</button>
+        <button @onclick="NewStringQuestion_OnClick">String</button>
+    </div>
+
+    <div>
+        @foreach (var question in Root.Questions)
+        {
+            <EditQuestion Root="question"></EditQuestion>
+        }
+    </div>
+</div>
+

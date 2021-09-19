@@ -1,0 +1,32 @@
+﻿
+<div>
+    <div>
+        <div>Case Sensitive</div>
+        <div><input type="checkbox" @bind="Root.IsCaseSensitive" /></div>
+    </div>
+    <div>
+        <div>Ordered</div>
+        <div><input type="checkbox" @bind="Root.IsOrdered" /></div>
+         
+    </div>
+    <div>
+        @if (Root.IsOrdered)
+        {
+            <ol>
+                @foreach (var answer in Root.Answers)
+                {
+                    <li><input @bind="answer.Answer" /></li>
+                }
+            </ol>
+        }
+        else
+        {
+            <ul>
+                @foreach (var answer in Root.Answers)
+                {
+                    <li><input @bind="answer.Answer" /></li>
+                }
+            </ul>
+        }
+    </div>
+</div>

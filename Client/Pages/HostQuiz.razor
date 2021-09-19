@@ -1,0 +1,19 @@
+﻿@page "/hostquiz"
+
+@if (_quizzes != null)
+{
+    foreach (var quiz in _quizzes)
+    {
+        <div>
+            <div>Name: @quiz.Name</div>
+            <div>Rounds: @quiz.Rounds</div>
+            <div>Questions: @quiz.Questions</div>
+
+            <button @onclick="()=> Host_OnClick(quiz.Code)">Host</button>
+        </div>
+    }
+}
+else
+{
+    <div>Getting Quiz Details</div>
+}

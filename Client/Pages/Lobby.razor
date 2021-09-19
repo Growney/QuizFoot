@@ -1,0 +1,21 @@
+﻿@page "/lobby/{Code?}"
+
+@if (Info != null)
+{
+    <div>
+        @Info.Code
+    </div>
+    <div>
+        @Info.HostName
+    </div>
+    <div>
+        <h1>Quiz</h1>
+        <p>@Info.Quiz.Name</p>
+        <p>Rounds: @Info.Quiz.Rounds</p>
+        <p>Questions: @Info.Quiz.Questions</p>
+    </div>
+}
+else
+{
+    <h1>Getting Lobby Info</h1>
+}
