@@ -19,7 +19,7 @@ namespace QuizFoot.Client.Pages
         [Inject]
         public NavigationManager Nav { get; set; }
 
-        public Quiz Quiz { get; set; }
+        public QuizDto Quiz { get; set; }
 
         [Parameter]
         public string Code { get;set; }
@@ -28,11 +28,11 @@ namespace QuizFoot.Client.Pages
         {
             if (Code == null)
             {
-                Quiz = new Quiz() { Name = "New Quiz" };
+                Quiz = new QuizDto() { Name = "New Quiz" };
             }
             else
             {
-                Quiz = await Client.GetFromJsonAsync<Quiz>($"/api/quiz/{Code}");
+                Quiz = await Client.GetFromJsonAsync<QuizDto>($"/api/quiz/{Code}");
             }
         }
 
@@ -40,7 +40,7 @@ namespace QuizFoot.Client.Pages
         {
             int position = Quiz.Rounds.Count;
 
-            var newRound = new Round() { Name = $"Round {position}" };
+            var newRound = new RoundDto() { Name = $"Round {position}" };
             Quiz.Rounds.Add(newRound);
         }
         public async Task Save_OnClick()
@@ -49,7 +49,7 @@ namespace QuizFoot.Client.Pages
             if (response.StatusCode == System.Net.HttpStatusCode.Created)
             {
                 Nav.NavigateTo(response.Headers.Location.ToString());
-                Quiz = await Client.GetFromJsonAsync<Quiz>($"/api/quiz/{Code}");
+                Quiz = await Client.GetFromJsonAsync<QuizDto>($"/api/quiz/{Code}");
             }
         }
     }

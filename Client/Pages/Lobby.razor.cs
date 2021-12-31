@@ -23,7 +23,7 @@ namespace QuizFoot.Client.Pages
         public NavigationManager Nav { get; set; }
         [Parameter]
         public string Code { get; set; }
-        public LobbyInfo Info { get; set; }
+        public LobbyInfoDto Info { get; set; }
 
 
         private HubConnection _hubConnection;
@@ -32,7 +32,7 @@ namespace QuizFoot.Client.Pages
         {
             if(Code != null)
             {
-                Info = await Client.GetFromJsonAsync<LobbyInfo>($"/api/lobby/lobbyinfo/{Code}");
+                Info = await Client.GetFromJsonAsync<LobbyInfoDto>($"/api/lobby/lobbyinfo/{Code}");
             }
             if(Info != null)
             {

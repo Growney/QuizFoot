@@ -7,15 +7,16 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using QuizFoot.Server.Hubs;
-using QuizFoot.Server.Contexts;
 using QuizFoot.Server.Abstractions;
 using QuizFoot.Server.Implementation;
-using QuizFoot.Server.Contexts.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
+using QuizFoot.Abstractions;
+using QuizFoot.Core;
+using QuizFoot.Domain;
 
 namespace QuizFoot.Server
 {
@@ -39,6 +40,7 @@ namespace QuizFoot.Server
             services.AddTransient<ILobbyRepository, LobbyRepository>();
             services.AddTransient<ICodeGenerator, CodeGenerator>();
             services.AddTransient<IQuizRepository, QuizRepository>();
+            services.AddTransient<IQuizFootUnitOfWork, QuizFootUnitOfWork>();
 
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddEntityFrameworkStores<QuizDbContext>();

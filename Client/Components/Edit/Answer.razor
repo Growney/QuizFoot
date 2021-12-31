@@ -1,0 +1,35 @@
+﻿
+@if(Parent.Options.Count == 0)
+{
+    <InputSelect @bind-Value=Type onchange=TypeChanged>
+        <option value=@AnswerType.Text>Text</option>
+        <option value=@AnswerType.Number>Number</option>
+        <option value=@AnswerType.Date>Date</option>
+    </InputSelect>
+}
+
+@switch(Type)
+{
+    case AnswerType.Text:
+        {
+            <InputText @bind-Value=Root.StringAnswer.Text>Text</InputText>
+
+        }
+        break;
+    case AnswerType.Number:
+        {
+            <InputNumber @bind-Value=Root.IntegerAnswer.Value></InputNumber>
+        }
+        break;
+    case AnswerType.Date:
+        {
+            <InputDate @bind-Value=Root.DateAnswer.Value></InputDate>
+        }
+        break;
+    case AnswerType.Option:
+        {
+                    
+        }
+        break;
+
+}

@@ -19,11 +19,11 @@ namespace QuizFoot.Client.Pages
         [Inject]
         public NavigationManager Nav { get; set; }
 
-        private List<QuizGeneralDetails> _quizzes;
+        private List<QuizDetailsDto> _quizzes;
 
         protected override async Task OnInitializedAsync()
         {
-            _quizzes = await Client.GetFromJsonAsync<List<QuizGeneralDetails>>($"/api/quiz/userquizdetails");
+            _quizzes = await Client.GetFromJsonAsync<List<QuizDetailsDto>>($"/api/quiz/userquizdetails");
         }
 
         private async void Host_OnClick(string quizCode)

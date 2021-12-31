@@ -1,0 +1,16 @@
+﻿<h3>A</h3>
+<input @bind="Root.Text" />
+<div>
+    <button @onclick="NewOption">New Option</button>
+</div>
+@foreach(var option in Root.Options)
+{
+    <Option Root=option></Option>
+}
+<div>
+    <button @onclick="NewAnswer">New Answer</button>
+</div>
+@foreach(var answer in Root.Answers)
+{
+    <Answer Root=answer Parent=Root></Answer>
+}

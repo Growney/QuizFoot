@@ -1,0 +1,14 @@
+﻿
+
+<div class="question-container">
+    <div class="question-header">
+        <input @bind="Root.Text" />
+    </div>
+
+    <div class="question-content">
+        @foreach(var part in Root.Parts)
+        {
+            <QuestionPart Root="part"></QuestionPart>
+        }
+    </div>
+</div>

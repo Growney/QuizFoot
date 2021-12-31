@@ -1,0 +1,17 @@
+﻿
+
+<div class="round-container">
+    <div class="header"><input @bind="Root.Name" /></div>
+
+    <div>
+        <button @onclick="NewQuestion">New Question</button>
+    </div>
+
+    <div>
+        @foreach (var question in Root.Questions)
+        {
+            <Question Root="question"></Question>
+        }
+    </div>
+</div>
+

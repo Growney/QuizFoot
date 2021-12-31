@@ -13,18 +13,18 @@ namespace QuizFoot.Server.Controllers
     [ApiController]
     public class HostController : Controller
     {
-        private readonly UserManager<Contexts.Models.ApplicationUser> _userManager;
-        private readonly IQuizRepository _repo;
-        public HostController(IQuizRepository repo, UserManager<Contexts.Models.ApplicationUser> userManager)
-        {
-            _repo = repo;
-            _userManager = userManager;
-        }
-        [HttpGet("[action]/{code}")]
-        public async Task<IActionResult> QuizDetails(string code)
-        {
-            var quiz = await _repo.GetDetails(code);
-            return new JsonResult(quiz);
-        }
+        //private readonly UserManager<ApplicationUser> _userManager;
+        //private readonly IQuizRepository _repo;
+        //public HostController(IQuizRepository repo, UserManager<Contexts.Models.ApplicationUser> userManager)
+        //{
+        //    _repo = repo;
+        //    _userManager = userManager;
+        //}
+        //[HttpGet("[action]/{code}")]
+        //public async Task<IActionResult> QuizDetails(string code)
+        //{
+        //    var quiz = await _repo.GetDetails(code);
+        //    return new JsonResult(quiz);
+        //}
     }
 }
