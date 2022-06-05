@@ -17,6 +17,7 @@ using Microsoft.Extensions.Options;
 using QuizFoot.Abstractions;
 using QuizFoot.Core;
 using QuizFoot.Domain;
+using QuizFoot.Server.Core;
 
 namespace QuizFoot.Server
 {
@@ -37,10 +38,12 @@ namespace QuizFoot.Server
             {
                 x.UseSqlServer(Configuration.GetConnectionString("SqlServer"));
             });
-            services.AddTransient<ILobbyRepository, LobbyRepository>();
+            services.AddTransient<IGameRepository, GameRepository>();
             services.AddTransient<ICodeGenerator, CodeGenerator>();
             services.AddTransient<IQuizRepository, QuizRepository>();
             services.AddTransient<IQuizFootUnitOfWork, QuizFootUnitOfWork>();
+            services.AddTransient<IQuizProjector, QuizProjector>();
+            services.AddTransient<IGameProjector, GameProjector>();
 
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddEntityFrameworkStores<QuizDbContext>();
@@ -52,12 +55,12 @@ namespace QuizFoot.Server
             services.AddAuthentication()
                 .AddIdentityServerJwt();
 
-            services.AddSingleton<IPostConfigureOptions<JwtBearerOptions>,ConfigureJwtBearerOptions>();
+            services.AddSingleton<IPostConfigureOptions<JwtBearerOptions>, ConfigureJwtBearerOptions>();
 
             services.Configure<IdentityOptions>(options =>
                 options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
 
-            services.AddSignalR();
+            services.AddSignalR(x => x.EnableDetailedErrors = true);
             services.AddControllersWithViews();
             services.AddRazorPages();
 
@@ -97,7 +100,7 @@ namespace QuizFoot.Server
             {
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
-                endpoints.MapHub<LobbyHub>("/lobbyHub");
+                endpoints.MapHub<GameHub>("/gameHub");
                 endpoints.MapFallbackToFile("index.html");
             });
         }

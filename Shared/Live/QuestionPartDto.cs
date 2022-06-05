@@ -5,16 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuizFoot.Shared.Edit
+namespace QuizFoot.Shared.Live
 {
-    
     public class QuestionPartDto
     {
         public Guid Id { get; set; }
-        public Guid QuestionId { get; set; }
-        public string? Text { get; set; }
+        public string Text { get; set; }
         public bool IsMultipleChoice { get; set; }
         public AnswerType AnswerType { get; set; }
-        public List<AnswerDto> Answers { get; set; } = new List<AnswerDto>();
+        public List<MultipleChoiceOptionDto> Choices { get; set; }
     }
 }

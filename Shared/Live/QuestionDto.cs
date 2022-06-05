@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace QuizFoot.Shared.Live
 {
-    public class LobbyInfoDto
+    public class QuestionDto
     {
         public Guid Id { get; set; }
-        public string Code { get; set; }
-        public string HostName { get; set; }
-        public QuizDetailsDto Quiz { get; set; } 
+        public Guid QuestionStatusId { get; set; }
+        public string Text { get; set; }
+        public List<QuestionPartDto> Parts { get; set; }
     }
 }

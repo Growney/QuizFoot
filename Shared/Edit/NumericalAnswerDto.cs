@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QuizFoot.Shared.Edit
 {
-    public class IntegerAnswerDto
+    public class NumericalAnswerDto
     {
         public double Value { get; set; }
         public double? MaximumValue { get; set; }

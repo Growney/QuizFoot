@@ -6,9 +6,16 @@
     </div>
 
     <div class="question-content">
-        @foreach(var part in Root.Parts)
+        @if(Root.Parts.Count == 1)
         {
-            <QuestionPart Root="part"></QuestionPart>
+            <QuestionPart Root="Root.Parts[0]" ShowText=false></QuestionPart>
+        }
+        else
+        {
+            foreach(var part in Root.Parts)
+            {
+                <QuestionPart Root="part" ShowText=true></QuestionPart>
+            }
         }
     </div>
 </div>

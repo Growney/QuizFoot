@@ -1,0 +1,60 @@
+﻿@page "/game/{Code?}"
+
+@switch (_currentState)
+{
+    case State.NoCode:
+        <h1>No Game Code Found</h1>
+        break;
+    case State.NoLobby:
+        <h1>No Game Lobby Found</h1>
+        break;
+    case State.FailedToJoin:
+        <h1>Failed to join game, please refresh and try again</h1>
+        break;
+    case State.GettingInfo:
+        <h1>Getting game info, please wait ...</h1>
+        break;
+    case State.InLobby:
+    case State.InGame:
+    case State.HostingLobby:
+        {
+            <h1>
+                @_lobbyInfo.Code
+            </h1>
+            <h3>
+                Host: @_lobbyInfo.Host.Name
+            </h3>
+            <p>Rounds: @_lobbyInfo.Quiz.Rounds</p>
+            <p>Questions: @_lobbyInfo.Quiz.Questions</p>
+            <h4>Players</h4>
+            @foreach (var player in _lobbyInfo.Players)
+            {
+                <p>@player.Name</p>
+            }
+            @if (_currentState == State.InLobby)
+            {
+                <h4>Enter Name To Join:</h4>
+                <input @bind="_name" />
+                <button @onclick="JoinGame">Join</button>
+            }
+            else if(_currentState == State.HostingLobby)
+            {
+                <button >Start</button>
+            }
+            else
+            {
+                <h4>Waiting for host to begin</h4>
+            }
+        }
+        break;
+    case State.WaitingForNextQuestion:
+        {
+            <div>Playing State</div>
+        }
+        break;
+    case State.Hosting:
+        {
+            <div>Hosting State</div>
+        }
+        break;
+}

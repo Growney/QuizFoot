@@ -9,6 +9,8 @@ namespace QuizFoot.Shared.Edit
 {
     public class QuestionDto
     {
+        public Guid Id { get; set; }
+        public Guid RoundId { get; set; }
         public string Text { get; set; }
         public List<QuestionPartDto> Parts { get; set; } = new List<QuestionPartDto>();
     }

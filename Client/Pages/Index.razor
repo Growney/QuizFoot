@@ -1,14 +1,36 @@
 ﻿@page "/"
 
-
-<NavLink class="nav-link" href="editQuiz">
+<NavLink class="nav-link" href="quiz/create">
     <span class="oi oi-list-rich" aria-hidden="true"></span> Create
 </NavLink>
-
-<NavLink class="nav-link" href="joinQuiz">
+<NavLink class="nav-link" href="joinquiz">
     <span class="oi oi-list-rich" aria-hidden="true"></span> Join
 </NavLink>
+<table width="100%">
+    <tr>
+        <th width="20%">Name</th>
+        <th width="20%">Rounds</th>
+        <th width="20%">Questions</th>
+        <th width="20%"></th>
+        <th width="20%"></th>
+    </tr>
+    @foreach (var quizDetail in _userQuizes)
+    {
+        <tr>
+            <td>@quizDetail.Name</td>
+            <td>@quizDetail.Rounds</td>
+            <td>@quizDetail.Questions</td>
+            <td>
+                <NavLink class="nav-link" href=@($"quiz/edit/{quizDetail.Code}")>
+                    Edit
+                </NavLink>
+            </td>
+            <td>
+                <NavLink class="nav-link" href=@($"quiz/host/{quizDetail.Code}")>
+                    Host
+                </NavLink>
+            </td>
+        </tr>
+    }
+</table>
 
-<NavLink class="nav-link" href="HostQuiz">
-    <span class="oi oi-list-rich" aria-hidden="true"></span> Host
-</NavLink>

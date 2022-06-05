@@ -1,16 +1,28 @@
-﻿<h3>A</h3>
-<input @bind="Root.Text" />
-<div>
-    <button @onclick="NewOption">New Option</button>
-</div>
-@foreach(var option in Root.Options)
+﻿@using QuizFoot.Shared.Edit
+@if (ShowText)
 {
-    <Option Root=option></Option>
+    <input @bind="Root.Text" />
 }
 <div>
-    <button @onclick="NewAnswer">New Answer</button>
+    Answer Type:
+    <select @bind=Root.AnswerType>
+    <option value=@AnswerType.String>Text</option>
+    <option value=@AnswerType.Numeric>Number</option>
+    <option value=@AnswerType.Date>Date</option>    
+    </select>
 </div>
-@foreach(var answer in Root.Answers)
-{
-    <Answer Root=answer Parent=Root></Answer>
-}
+<div>
+    Answers:
+    <input type="number" min="1" value="@Root.Answers.Count" @onchange="OnAnswersCountChange"/>
+</div>
+<div>
+    Multiple Choice:
+    <input type="checkbox" @bind="Root.IsMultipleChoice"/>
+</div>
+    
+<div>
+    @foreach(var answer in Root.Answers)
+    {
+        <Answer Root=answer AnswerType=Root.AnswerType ShowCorrect=Root.IsMultipleChoice ShowNonExactParameters=!Root.IsMultipleChoice></Answer>
+    }
+</div>

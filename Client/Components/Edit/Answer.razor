@@ -1,35 +1,41 @@
-﻿
-@if(Parent.Options.Count == 0)
-{
-    <InputSelect @bind-Value=Type onchange=TypeChanged>
-        <option value=@AnswerType.Text>Text</option>
-        <option value=@AnswerType.Number>Number</option>
-        <option value=@AnswerType.Date>Date</option>
-    </InputSelect>
-}
+﻿@using QuizFoot.Shared.Edit
+<div>
+    @switch (AnswerType)
+    {
+        case AnswerType.String:
+            <div>Value:<input @bind=Root.StringAnswer.Text></input></div>
+            @if (ShowNonExactParameters)
+            {
+                <div>Case Sensitive:<input @bind=Root.StringAnswer.CaseSensitive type="checkbox"></input></div>
+            }
+            break;
+        case AnswerType.Numeric:
+            <div>Value:<input @bind=Root.NumericalAnswer.Value type="number"></input></div>
+            @if (ShowNonExactParameters)
+            {
+                <div>Decimal Places:<input @bind=Root.NumericalAnswer.DecimalPlaces type="number"></input></div>
+                <div>Maximum:<input @bind=Root.NumericalAnswer.MaximumValue type="number"></input></div>
+                <div>Minimum:<input @bind=Root.NumericalAnswer.MinimumValue type="number"></input></div>
+            }
+            break;
+        case AnswerType.Date:
+            <div>Value:<input @bind=Root.DateAnswer.Value type="date"></input></div>
+            @if (ShowNonExactParameters)
+            {
+                <div>Match On Day:<input @bind=Root.DateAnswer.MatchOnDay type="checkbox"></input></div>
+                <div>Match On Month:<input @bind=Root.DateAnswer.MatchOnMonth type="checkbox"></input></div>
+                <div>Match On Year:<input @bind=Root.DateAnswer.MatchOnYear type="checkbox"></input></div>
+            }
+            break;
+    }
+    @if (ShowCorrect)
+    {
+        <div>
+            Correct: <input type="checkbox" @bind="Root.IsCorrect" />
+        </div>
+    }
+</div>
 
-@switch(Type)
-{
-    case AnswerType.Text:
-        {
-            <InputText @bind-Value=Root.StringAnswer.Text>Text</InputText>
 
-        }
-        break;
-    case AnswerType.Number:
-        {
-            <InputNumber @bind-Value=Root.IntegerAnswer.Value></InputNumber>
-        }
-        break;
-    case AnswerType.Date:
-        {
-            <InputDate @bind-Value=Root.DateAnswer.Value></InputDate>
-        }
-        break;
-    case AnswerType.Option:
-        {
-                    
-        }
-        break;
 
-}
+

@@ -1,0 +1,11 @@
+﻿<h3>@Root.Name</h3>
+<div>Name: <input @bind="Root.Name" /></div>
+<hr>
+<div>
+    <button @onclick="NewRound_OnClick">New Round</button>
+</div>
+
+@foreach (var round in Root.Rounds)
+{
+    <Round Root="round"></Round>
+}

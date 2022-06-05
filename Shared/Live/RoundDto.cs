@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace QuizFoot.Shared.Live
 {
-    public class QuizDetailsDto
+    public class RoundDto
     {
         public Guid Id { get; set; }
-        public string Code { get; set; }
+        public Guid RoundStatusId { get; set; }
         public string Name { get; set; }
-        public int Rounds { get; set; }
-        public int Questions { get; set; }
+        public string Description { get; set; }
     }
 }
